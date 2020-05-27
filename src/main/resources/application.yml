@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    url: jdbc:log4jdbc:mysql://139.9.148.236/doiyin_awesome?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: zhongli#123
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+  redis:
+    port: 6379
+    host: 192.168.42.131
+    password: 123456
+    database: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  session:
+    store-type: redis
+  thymeleaf:
+    cache: false
+  rest-template:
+    connect-timeout: 5000
+    read-timeout: 5000
+  quartz:
+    job-store-type: jdbc #数据库方式
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            useProperties: false
+            tablePrefix: QRTZ_
+            isClustered: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+  application:
+    name: ai-monitor
+server:
+  port: 8888
+mybatis-plus:
+  global-config:
+    db-config:
+      update-strategy: IGNORED
+wx:
+  miniapp:
+    appid: wx139a748354fd2d1e #微信小程序的appid
+    secret: 8c8864804d2ada24d332ba2c8ef3f825 #微信小程序的Secret
+    token: #微信小程序消息服务器配置的token
+    aesKey: #微信小程序消息服务器配置的EncodingAESKey
+    msgDataFormat: JSON
+dev-platform:
+  dev-modal: false
+  icon:
+    path: D:\project\dev_platform_pc\src\icons\svg
+  cache-name: exam_training
